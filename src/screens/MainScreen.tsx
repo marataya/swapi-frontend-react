@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import useInfiniteScroll from "react-infinite-scroll-hook";
 import axios from "axios";
-import CardCharacter from "../components/CardCharacter.tsx";
 import Header from "./Header.tsx";
+import CardPlanets from "../components/CardPlanets.tsx";
 
 function MainScreen() {
     const [characters, setCharacters] = useState([]);
@@ -16,7 +16,7 @@ function MainScreen() {
 
     const fetchCharacters = async () => {
         setLoading(true)
-        const response = await axios.get(`https://swapi.dev/api/people/?page=${page}`)
+        const response = await axios.get(`https://swapi.dev/api/planets/?page=${page}`)
         setCharacters((prevCharacters) => [...prevCharacters, ...response.data.results])
         setLoading(false);
         if (!response.data.next) {
@@ -40,7 +40,7 @@ function MainScreen() {
                 ref={rootRef}
                 className="flex flex-wrap align-baseline bg-slate-100">
                 {characters.map((character, index) => (
-                    <CardCharacter key={index} character={character}/>
+                    <CardPlanets key={index} character={character}/>
                 ))}
             </div>
         </>
