@@ -1,4 +1,4 @@
-import Button from "./Button.tsx";
+import Button from "./components/Button.tsx";
 
 export default function Home() {
     return (

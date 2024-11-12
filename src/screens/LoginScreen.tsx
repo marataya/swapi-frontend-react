@@ -1,6 +1,17 @@
 import {FieldValues, useForm} from "react-hook-form";
+import {useAuth} from "../services/auth/AuthContext.tsx";
+import {useNavigate} from "react-router-dom";
+import {useEffect, useState} from "react";
 
-function AuthForm() {
+function LoginScreen() {
+    const {
+        login,
+        isAuthenticated,
+        error: loginError
+    } = useAuth()
+
+    const navigate = useNavigate()
+
     const {
         register,
         handleSubmit,
@@ -13,8 +24,20 @@ function AuthForm() {
         confirmPassword: ""
     })
 
+    useEffect(
+        function () {
+            if (isAuthenticated)
+                navigate("/app", {
+                    replace: true,
+                })
+        },
+        [isAuthenticated, navigate],
+    );
+
     const onSubmit = async (data: FieldValues) => {
         console.log(data)
+        const {email, password} = data
+        if (email && password) login(email, password)
         reset()
     }
 
@@ -43,17 +66,6 @@ function AuthForm() {
                         placeholder="Password"
                         className="px-4 py-2 rounded border-2"/>
                     <p className="text-red-700 text-xs font-bold">{errors.password?.message?.toString()}</p>
-                    <input
-                        {...register("confirmPassword", {
-                            required: "Password is required",
-                            validate: (value) => value === getValues("password") || "Passwords must match",
-                            minLength: {value: 4, message: "Password must be at least 4"}
-                        })}
-                        type="password"
-                        required
-                        placeholder="Confirm password"
-                        className="px-4 py-2 rounded border-2"/>
-                    <p className="text-red-700 text-xs font-bold">{errors.confirmPassword?.message?.toString()}</p>
                     <button disabled={isSubmitting} type="submit" className="bg-blue-500 text-white py-2 rounded">Submit</button>
                 </form>
             </div>
@@ -61,4 +73,4 @@ function AuthForm() {
     )
 }
 
-export default AuthForm;
+export default LoginScreen;
