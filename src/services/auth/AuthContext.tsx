@@ -9,7 +9,7 @@ function AuthProvider({ children }: ComponentProps ) {
     const [{ user, isAuthenticated, error }, dispatch] = useReducer(reducer, initialState);
 
     const dispatchLogout = useCallback(function () { dispatch({ type: actionTypes.LOGOUT }) }, [])
-    const dispatchLogin = useCallback(function (payload) { dispatch({ type: actionTypes.LOGIN, payload }) }, [])
+    const dispatchLogin = useCallback(function (payload: any) { dispatch({ type: actionTypes.LOGIN, payload }) }, [])
     const dispatchInccorectCreds = useCallback(function () { dispatch({ type: actionTypes.INCORRECT_CREDS }) }, [])
 
     const login = useCallback(function (email: string, password: string) {

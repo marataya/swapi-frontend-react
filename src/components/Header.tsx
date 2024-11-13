@@ -1,4 +1,3 @@
-import React from 'react';
 import {useLocation, Link} from 'react-router-dom';
 
 const Header = () => {
@@ -12,33 +11,24 @@ const Header = () => {
                     <ul className="flex space-x-4">
                         <li>
                             <Link
-                                to="/characters"
+                                to="/app/characters"
                                 className={`hover:text-gray-400 ${
-                                    location.pathname === '/characters' ? 'text-gray-400' : ''
-                                }`}
-                            >
-                                Characters
-                            </Link>
+                                    location.pathname === '/app/characters' ? 'text-gray-400' : ''
+                                }`} >Characters</Link>
                         </li>
                         <li>
                             <Link
-                                to="/planets"
+                                to="/app/planets"
                                 className={`hover:text-gray-400 ${
-                                    location.pathname === '/planets' ? 'text-gray-400' : ''
-                                }`}
-                            >
-                                Planets
-                            </Link>
+                                    location.pathname === '/app/planets' ? 'text-gray-400' : ''
+                                }`}>Planets</Link>
                         </li>
                         <li>
                             <Link
-                                to="/starships"
+                                to="/app/starships"
                                 className={`hover:text-gray-400 ${
-                                    location.pathname === '/starships' ? 'text-gray-400' : ''
-                                }`}
-                            >
-                                Starships
-                            </Link>
+                                    location.pathname === '/app/starships' ? 'text-gray-400' : ''
+                                }`}>Starships</Link>
                         </li>
                     </ul>
                 </nav>

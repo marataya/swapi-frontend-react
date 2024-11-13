@@ -1,55 +1,61 @@
-import {useForm} from 'react-hook-form';
-import Button from "./Button.tsx";
+import {useState} from "react"
+import FormCharacter from "./FormCharacter.tsx"
+import {useNavigate} from "react-router-dom";
+
 
 const CardCharacter = ({character}) => {
-    const {register, handleSubmit, formState: {errors}} = useForm({
-        defaultValues: character
-    });
-
-    const onSubmit = data => {
-        console.log(data);
-        // Handle the form submission logic here
-    };
+    const [showModal, setShowModal] = useState(false)
+    const handleClick = () => {
+        setShowModal(true)
+    }
+    const handleCloseModal = () => {
+        setShowModal(false)
+    }
 
     return (
-        <div className="flex flex-col mx-auto align-baseline bg-white rounded-xl m-3 p-5 border-amber-950 radius shadow-2xl">
-            <form onSubmit={handleSubmit(onSubmit)}>
+        <>
+            <div onClick={handleClick}
+                 className="flex flex-col mx-auto min-w-80 max-w-802 align-baseline bg-white rounded-xl m-3 p-5 border-amber-950 radius shadow-2xl">
                 <div className="flex gap-5 justify-between">
-                    <div className="underline">Name:</div>
-                    <input className="font-bold" {...register('name', {required: true})} />
+                    <div>Name:</div>
+                    <div className="font-bold">{character.name}</div>
                 </div>
                 <div className="flex gap-5 justify-between">
-                    <div className="underline">Height:</div>
-                    <input className="font-bold" {...register('height', {required: true})} />
+                    <div>Height:</div>
+                    <div className="font-bold">{character.height}</div>
                 </div>
                 <div className="flex gap-5 justify-between">
                     <div>Mass:</div>
-                    <input className="font-bold" {...register('mass', {required: true})} />
+                    <div className="font-bold">{character.mass}</div>
                 </div>
                 <div className="flex gap-5 justify-between">
                     <div>Hair Color:</div>
-                    <input className="font-bold" {...register('hair_color', {required: true})} />
+                    <div className="font-bold">{character.hair_color}</div>
                 </div>
                 <div className="flex gap-5 justify-between">
-                    <div className="underline">Skin Color:</div>
-                    <input className="font-bold" {...register('skin_color', {required: true})} />
+                    <div>Skin Color:</div>
+                    <div className="font-bold">{character.skin_color}</div>
                 </div>
                 <div className="flex gap-5 justify-between">
-                    <div className="underline">Eye Color:</div>
-                    <input className="font-bold" {...register('eye_color', {required: true})} />
+                    <div>Eye Color:</div>
+                    <div className="font-bold">{character.eye_color}</div>
                 </div>
                 <div className="flex gap-5 justify-between">
-                    <div className="underline">Birth Year:</div>
-                    <input className="font-bold" {...register('birth_year', {required: true})} />
+                    <div>Birth Year:</div>
+                    <div className="font-bold">{character.birth_year}</div>
                 </div>
                 <div className="flex gap-5 justify-between mb-3">
-                    <div className="underline">Gender:</div>
-                    <input className="font-bold" {...register('gender', {required: true})} />
+                    <div>Gender:</div>
+                    <div className="font-bold">{character.gender}</div>
                 </div>
-                <Button bgColor="blue" fontSize="base">Save</Button>
-            </form>
-        </div>
-    );
-};
+            </div>
+
+
+            {/* Modal logic */}
+            {showModal && <FormCharacter character={character} onClose={handleCloseModal} />}
+        </>
+    )
+}
+
 
 export default CardCharacter;

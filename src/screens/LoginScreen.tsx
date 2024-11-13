@@ -1,7 +1,7 @@
-import {FieldValues, useForm} from "react-hook-form";
-import {useAuth} from "../services/auth/AuthContext.tsx";
-import {useNavigate} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {FieldValues, useForm} from "react-hook-form"
+import {useAuth} from "../services/auth/AuthContext.tsx"
+import {useNavigate} from "react-router-dom"
+import {useEffect, useState} from "react"
 
 function LoginScreen() {
     const {
@@ -27,12 +27,12 @@ function LoginScreen() {
     useEffect(
         function () {
             if (isAuthenticated)
-                navigate("/app", {
+                navigate("/app/characters", {
                     replace: true,
                 })
         },
         [isAuthenticated, navigate],
-    );
+    )
 
     const onSubmit = async (data: FieldValues) => {
         console.log(data)
@@ -73,4 +73,4 @@ function LoginScreen() {
     )
 }
 
-export default LoginScreen;
+export default LoginScreen
