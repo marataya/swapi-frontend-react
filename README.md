@@ -24,4 +24,4 @@ npm install
 ### 3. Login using fake email and password:
 ```
  email: admin@email.com
- password: qwerty
+ password: pass
